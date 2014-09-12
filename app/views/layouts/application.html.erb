@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= content_for?(:title) ? yield(:title) : "Untitled" %></title>
+    <%= stylesheet_link_tag "application" %>
+    <%= javascript_include_tag :defaults %>
+    <%= csrf_meta_tag %>
+    <%= yield(:head) %>
+  </head>
+  <body style="background-image: url(http://www.pageresource.com/wallpapers/wallpaper/africa-wildlife-giraffes-sunset_995228.jpg);">
+    <div id="container">
+<!--       <%= nav_bar :fixed => :top,  :brand => "Africa Trip Photos" do %>
+          <%= menu_item "Albums", root_path %>
+          <%= menu_item "Pictures", root_path %>
+      <% end %> -->
+      <% flash.each do |name, msg| %>
+        <%= content_tag :div, msg, :id => "flash_#{name}" %>
+      <% end %>
+      <%= content_tag :h1, yield(:title) if show_title? %>
+      <%= yield %>
+    </div>
+  </body>
+</html>

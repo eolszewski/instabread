@@ -1,0 +1,20 @@
+<%= form_for @picture, :html => { :class => 'form-horizontal', :multipart => true } do |f| %>
+  <%= f.hidden_field :album_id %>
+  <div class="control-group">
+    <%= f.label :name, :class => 'control-label' %>
+    <%= @album %>
+    <div class="controls">
+      <%= f.text_field :name, :class => 'text_field' %>
+      <br>
+      <%= image_tag(@picture.image_url) if @picture.image? %>
+      <%= f.file_field :image %>
+      <%= f.hidden_field :image_cache %>
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                pictures_path, :class => 'btn' %>
+  </div>
+<% end %>
